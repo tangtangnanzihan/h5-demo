@@ -2,18 +2,44 @@
 <html>
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>跳转中...</title>
+<!-- 必须加：适配微信 + 手机屏幕 -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<!-- 必须加：微信内核兼容 -->
+<meta name="x5-orientation" content="portrait">
+<meta name="x5-fullscreen" content="true">
+<title>正在跳转...</title>
 </head>
 <body style="margin:0;padding:0;">
+
 <script>
-var url = "https://www.qhkh.org.cn/site/webIndex/view?id=65073ef0bb5142afa301210b3ff0bf49";
-window.location.href = url;
+// 跳转目标（你原来的链接不变）
+var targetUrl = "https://www.qhkh.org.cn/site/webIndex/view?id=65073ef0bb5142afa301210b3ff0bf49";
+
+// 微信浏览器专用安全跳转（不会被拦截）
+function wechatJump() {
+  try {
+    // 优先使用 location.replace 防止返回历史栈
+    window.location.replace(targetUrl);
+  } catch (e) {
+    window.location.href = targetUrl;
+  }
+}
+
+// 页面加载完立即跳转
+window.onload = function() {
+  setTimeout(wechatJump, 300);
+};
 </script>
-<div style="text-align:center;padding:50px 20px;font-size:16px;">
-正在进入页面，请稍候...
+
+<!-- 微信友好提示文字 -->
+<div style="text-align:center;padding:60px 25px;font-size:17px;line-height:1.6;">
+正在为您打开页面，请稍候...<br>
+若未自动跳转，请点击下方链接
 </div>
+
+<div style="text-align:center;margin-top:20px;">
+<a href="https://www.qhkh.org.cn/site/webIndex/view?id=65073ef0bb5142afa301210b3ff0bf49" style="color:#07C;font-size:16px;text-decoration:none;">点击进入</a>
+</div>
+
 </body>
 </html>
-
-
